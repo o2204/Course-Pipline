@@ -1,6 +1,6 @@
 // API Client for Course Visual Generation Platform
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://209.38.218.224:8040/';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://209.38.218.224:8040';
 
 // ====================================================
 // Types
@@ -99,7 +99,7 @@ class APIClient {
     formData.append('course_name', courseName);
     formData.append('file', file);
 
-    const response = await fetch(`${this.baseURL}/files/upload`, {
+    const response = await fetch(`${this.baseURL}/api/files/upload`, {
       method: 'POST',
       body: formData,
     });
@@ -116,7 +116,7 @@ class APIClient {
    * Generate storyboard prompts
    */
   async generatePrompts(courseName: string): Promise<GeneratePromptResponse> {
-    const response = await fetch(`${this.baseURL}/prompts/generate`, {
+    const response = await fetch(`${this.baseURL}/api/prompts/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ class APIClient {
    * Get prompts by course_name
    */
   async getPrompts(courseName: string): Promise<{ course_name: string; prompt_json: StoryboardJSON; model_name: string }> {
-    const response = await fetch(`${this.baseURL}/prompts/${courseName}`);
+    const response = await fetch(`${this.baseURL}/api/prompts/${courseName}`);
 
     if (!response.ok) {
       const error = await response.json();
@@ -150,7 +150,7 @@ class APIClient {
    * Generate single image for a frame
    */
   async generateImage(courseName: string, frameCode: string): Promise<GenerateImageResponse> {
-    const response = await fetch(`${this.baseURL}/images/generate`, {
+    const response = await fetch(`${this.baseURL}/api/images/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -176,7 +176,7 @@ class APIClient {
     courseName: string,
     videoNumber?: number
   ): Promise<GenerateBulkImagesResponse> {
-    const response = await fetch(`${this.baseURL}/images/generate/bulk`, {
+    const response = await fetch(`${this.baseURL}/api/images/generate/bulk`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -205,7 +205,7 @@ class APIClient {
     url2?: string,
     motionPrompt?: string
   ): Promise<GenerateVideoResponse> {
-    const response = await fetch(`${this.baseURL}/videos/generate`, {
+    const response = await fetch(`${this.baseURL}/api/videos/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -231,7 +231,7 @@ class APIClient {
    * Get all generated images for a course
    */
   async getImages(courseName: string): Promise<GetImagesResponse> {
-    const response = await fetch(`${this.baseURL}/images/${courseName}`);
+    const response = await fetch(`${this.baseURL}/api/images/${courseName}`);
 
     if (!response.ok) {
       const error = await response.json();
@@ -245,7 +245,7 @@ class APIClient {
    * Get all videos for a course
    */
   async getVideos(courseName: string): Promise<any[]> {
-    const response = await fetch(`${this.baseURL}/videos/${courseName}`);
+    const response = await fetch(`${this.baseURL}/api/videos/${courseName}`);
 
     if (!response.ok) {
       const error = await response.json();
