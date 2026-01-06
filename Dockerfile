@@ -36,11 +36,11 @@ COPY backend ./backend
 COPY --from=frontend-builder /app/frontend/dist ./frontend_dist
 
 # Expose port
-EXPOSE 8000
+EXPOSE 8040
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import requests; requests.get('http://localhost:8000/health')"
+    CMD python -c "import requests; requests.get('http://localhost:8040/health')"
 
 # Run application
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8040"]
