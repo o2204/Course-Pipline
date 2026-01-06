@@ -1,0 +1,13 @@
+project_id = "xafloyvvlydgbprxmltb"
+
+[functions.upload-course]
+verify_jwt = false
+
+[functions.get-images]
+verify_jwt = false
+
+[functions.regenerate-image]
+verify_jwt = false
+
+[functions.frames]
+verify_jwt = false
