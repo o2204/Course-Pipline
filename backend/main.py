@@ -32,12 +32,12 @@ app.add_middleware(
 
 
 # -------------------------------------------------
-# Routers
+# Routers - All under /api prefix to avoid conflict with frontend SPA
 # -------------------------------------------------
-app.include_router(file_router)
-app.include_router(prompt_router)
-app.include_router(image_generation_router)
-app.include_router(video_generation_router)
+app.include_router(file_router, prefix="/api")
+app.include_router(prompt_router, prefix="/api")
+app.include_router(image_generation_router, prefix="/api")
+app.include_router(video_generation_router, prefix="/api")
 
 
 # -------------------------------------------------
