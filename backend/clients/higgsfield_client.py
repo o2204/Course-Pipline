@@ -93,8 +93,8 @@ class HiggsfieldClient:
 
         try:
             async with httpx.AsyncClient() as client:
-                # Submit to: https://platform.higgsfield.ai/higgsfield-ai/soul/standard
-                submit_url = f"{self.base_url}/higgsfield-ai/soul/standard"
+                # Submit to configured image model
+                submit_url = f"{self.base_url}/{settings.HIGGSFIELD_IMAGE_MODEL_ID}"
                 
                 payload = {
                     "prompt": frame_prompt,

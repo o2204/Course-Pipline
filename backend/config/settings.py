@@ -20,8 +20,9 @@ class Settings(BaseSettings):
     HIGGSFIELD_API_KEY: Optional[str] = None
     HIGGSFIELD_API_SECRET: Optional[str] = None
     HIGGSFIELD_API_URL: str = "https://platform.higgsfield.ai"
-    HIGGSFIELD_VIDEO_MODEL_ID: str = "higgsfield-ai/video/standard"
-    HIGGSFIELD_DOP_MODEL_ID: str = "higgsfield-ai/dop/standard"
+    HIGGSFIELD_VIDEO_MODEL_ID: str = "kling-video/v2.5-turbo/pro/image-to-video"
+    HIGGSFIELD_DOP_MODEL_ID: str = "kling-video/v2.5-turbo/pro/image-to-video"
+    HIGGSFIELD_IMAGE_MODEL_ID: str = "nano-banan/pro"
 
 
     # Files
