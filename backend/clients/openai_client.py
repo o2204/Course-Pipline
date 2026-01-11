@@ -37,7 +37,10 @@ class OpenAIClient:
         if not settings.OPENAI_API_KEY:
             raise RuntimeError("OPENAI_API_KEY is not set in environment variables")
         self.client = OpenAI(api_key=settings.OPENAI_API_KEY)
-        self.model = settings.OPENAI_MODEL
+        # Ensure model is never None - use fallback if not set
+        self.model = settings.OPENAI_MODEL or "gpt-4o-mini"
+        if not self.model:
+            self.model = "gpt-4o-mini"
     
     async def generate_storyboard(self, full_text: str) -> Dict[str, Any]:
         """
