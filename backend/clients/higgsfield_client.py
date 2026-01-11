@@ -98,8 +98,7 @@ class HiggsfieldClient:
                 
                 payload = {
                     "prompt": frame_prompt,
-                    "aspect_ratio": "16:9",
-                    "resolution": "720p" # Good default
+                    "image_size": "landscape_16_9",  # Seedream uses image_size with predefined values
                 }
                 
                 response = await client.post(
