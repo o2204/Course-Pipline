@@ -140,23 +140,36 @@ export default function UploadPage() {
           <button
             onClick={handleUpload}
             disabled={!courseName.trim() || !file || isUploading}
-            className="text-white font-normal w-full cursor-pointer h-12 text-lg bg-aurora rounded-md
-            dark:bg-gradient-to-br 
-            dark:from-purple-500 
-            dark:via-purple-500 
-            dark:to-cyan-500
-            hover:bg-red-500
+            className="
+              w-full h-12 text-lg font-medium rounded-md
+              flex items-center justify-center
+              text-white
+
+              bg-indigo-600
+              hover:bg-indigo-700
+
+              dark:bg-gradient-to-r
+              dark:from-purple-600
+              dark:via-indigo-600
+              dark:to-cyan-500
+              dark:hover:brightness-110
+
+              disabled:opacity-60
+              disabled:cursor-not-allowed
+
+              transition-all duration-300 ease-in-out
             "
           >
             {isUploading ? (
-              <div className='flex items-center gap-2 justify-center '>
-                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                Processing...
+              <div className="flex items-center gap-2 animate-pulse">
+                <Loader2 className="h-5 w-5 animate-spin" />
+                <span>Processing...</span>
               </div>
             ) : (
               "Create Storyboard"
             )}
           </button>
+
         </div>
       </div>
     </div>

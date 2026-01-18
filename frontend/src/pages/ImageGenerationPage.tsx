@@ -301,7 +301,19 @@ export default function ImageGenerationPage() {
                               </div>
 
                               {/* Right: Image Preview */}
-                              <div className="w-48 aspect-video bg-black/40 rounded-lg border border-white/10 overflow-hidden flex items-center justify-center relative">
+                              <div 
+                                className="w-48 aspect-video bg-black/40 rounded-lg border border-white/10 overflow-hidden flex items-center justify-center relative cursor-pointer hover:border-primary/50 transition-all"
+                                onClick={() => {
+                                  if (imageUrl) {
+                                    navigator.clipboard.writeText(imageUrl);
+                                    toast({
+                                      title: 'Copied',
+                                      description: 'Image URL copied to clipboard'
+                                    });
+                                  }
+                                }}
+                                title={imageUrl ? "Click to copy image URL" : undefined}
+                              >
                                 {imageUrl ? (
                                   <motion.img
                                     initial={{ opacity: 0 }}

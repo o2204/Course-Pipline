@@ -128,6 +128,27 @@ export default function VideoGenerationPage() {
     }
   };
 
+  const handleDownloadVideo = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `video_${selectedVideo?.video_number || 'output'}.mp4`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    } catch (error) {
+      console.error('Download failed:', error);
+      toast({
+        title: 'Download Failed',
+        description: 'Could not download video. Please try opening in a new tab.',
+        variant: 'destructive'
+      });
+    }
+  };
+
   if (isLoading) return <div className="flex justify-center p-20"><Loader2 className="animate-spin" /></div>;
   if (!storyboard) return <div>No data</div>;
 
@@ -212,7 +233,7 @@ export default function VideoGenerationPage() {
               <div className="flex justify-end">
                 <Button
                   variant="outline"
-                  onClick={() => window.open(generatedVideoUrl, "_blank")}
+                  onClick={() => handleDownloadVideo(generatedVideoUrl)}
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Download Video
@@ -243,7 +264,7 @@ export default function VideoGenerationPage() {
                   <Copy className="w-4 h-4" />
                 </Button>
               </div>
-            </div>
+            </div>0OBSERVED
 
             <div className="space-y-3">
               <Label>
@@ -278,7 +299,7 @@ export default function VideoGenerationPage() {
             <Button
               onClick={handleGenerate}
               disabled={isGenerating || !selectedVideo}
-              className="text-black hover:text-white w-full h-12 text-lg bg-aurora"
+              className="text-white hover:text-white w-full h-12 text-lg bg-aurora"
             >
               {isGenerating ? (
                 <>
